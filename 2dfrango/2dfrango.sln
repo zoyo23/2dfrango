@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DOMAIN", "DOMAIN", "{C88A74
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SERVICE", "SERVICE", "{5F893BBE-A391-4CD1-A11E-8A6A4F0D139C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2dfrango.tests", "tests\2dfrango.tests\2dfrango.tests.csproj", "{5C56C07A-CE47-4312-B770-6A68B18D0320}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2dfrango.tests", "tests\2dfrango.tests\2dfrango.tests.csproj", "{5C56C07A-CE47-4312-B770-6A68B18D0320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2dfrango.service", "src\2dfrango.service\2dfrango.service.csproj", "{491CBFDC-BD54-42CE-8F70-F8AB9A93509C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2dfrango.service", "src\2dfrango.service\2dfrango.service.csproj", "{491CBFDC-BD54-42CE-8F70-F8AB9A93509C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2dfrango.domain", "src\2dfrango.domain\2dfrango.domain.csproj", "{1CC04928-0705-4DD3-A604-B75A479D5884}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2dfrango.domain", "src\2dfrango.domain\2dfrango.domain.csproj", "{1CC04928-0705-4DD3-A604-B75A479D5884}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "INFRA", "INFRA", "{A1659BF3-52BF-45EB-8F90-75BA4E480EE2}"
 EndProject
@@ -23,13 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IOC", "IOC", "{C34EDF61-928
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "REPOSITORY", "REPOSITORY", "{4200568A-F515-4DCD-A6C9-639D0FCBAD10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2dfrango.infra.repository", "src\2dfrango.infra.repository\2dfrango.infra.repository.csproj", "{7CF50F10-2695-4B75-8029-F2CCA75F927F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2dfrango.infra.repository", "src\2dfrango.infra.repository\2dfrango.infra.repository.csproj", "{7CF50F10-2695-4B75-8029-F2CCA75F927F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2dfrango.infra.ioc", "src\2dfrango.infra.ioc\2dfrango.infra.ioc.csproj", "{D4FF9572-B062-4696-999A-E50F7F874FCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2dfrango.infra.ioc", "src\2dfrango.infra.ioc\2dfrango.infra.ioc.csproj", "{D4FF9572-B062-4696-999A-E50F7F874FCD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6C05FE44-ECEA-448D-92BD-698F767DB8F0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2dfrango.api", "src\2dfrango.api\2dfrango.api.csproj", "{A13349F5-E357-4664-A132-E6A422E05617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2dfrango.api", "src\2dfrango.api\2dfrango.api.csproj", "{A13349F5-E357-4664-A132-E6A422E05617}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,7 +71,7 @@ Global
 		{4200568A-F515-4DCD-A6C9-639D0FCBAD10} = {A1659BF3-52BF-45EB-8F90-75BA4E480EE2}
 		{7CF50F10-2695-4B75-8029-F2CCA75F927F} = {4200568A-F515-4DCD-A6C9-639D0FCBAD10}
 		{D4FF9572-B062-4696-999A-E50F7F874FCD} = {C34EDF61-928C-48CF-90A7-203583021CE9}
-		{A13349F5-E357-4664-A132-E6A422E05617} = {6C05FE44-ECEA-448D-92BD-698F767DB8F0}
+		{A13349F5-E357-4664-A132-E6A422E05617} = {21D12222-F448-4B60-8C6C-659C04F94822}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4DC56A7-D174-4E19-B047-D1115C4D543C}
