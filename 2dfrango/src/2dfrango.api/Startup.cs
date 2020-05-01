@@ -32,6 +32,13 @@ namespace _2dfrango.api
                 });
             });
             #endregion
+
+            #region CORS
+            services.AddCors(c =>
+            {
+                c.AddPolicy("default", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +52,10 @@ namespace _2dfrango.api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "2DFrango API v1");
                 c.RoutePrefix = string.Empty;
             });
+            #endregion
+
+            #region CORS
+            app.UseCors("default");
             #endregion
 
             if (env.IsDevelopment())
