@@ -1,4 +1,5 @@
 using _2dfrango.infra.ioc.Dependency_Injection;
+using _2dfrango.infra.repository.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,7 @@ namespace _2dfrango.api
 {
     public class Startup
     {
-        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -39,6 +40,8 @@ namespace _2dfrango.api
                 });
             });
             #endregion
+
+            services.AddDbContext<_2dFrangoContext>();
 
             #region CORS
             services.AddCors(c =>
