@@ -5,4 +5,8 @@
     <RootNamespace>_2dfrango.service</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\2dfrango.domain\2dfrango.domain.csproj" />
+  </ItemGroup>
+
 </Project>

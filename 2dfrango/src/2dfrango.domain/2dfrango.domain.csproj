@@ -5,4 +5,8 @@
     <RootNamespace>_2dfrango.domain</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
 </Project>
