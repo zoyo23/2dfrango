@@ -1,4 +1,5 @@
 ﻿using _2dfrango.api.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -44,6 +45,23 @@ namespace _2dfrango.api.Controllers
             {
 
                 return UnprocessableEntity();
+            }
+
+            return Ok();
+        }
+
+        [HttpGet("verificaLogin")]
+        [Authorize]
+        public IActionResult VerificaAutorizacao()
+        {
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+
+                return UnprocessableEntity(e.Message);
             }
 
             return Ok();

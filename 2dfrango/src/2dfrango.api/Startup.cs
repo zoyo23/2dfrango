@@ -1,5 +1,7 @@
 using _2dfrango.infra.ioc.Dependency_Injection;
 using _2dfrango.infra.repository.Context;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -48,6 +50,24 @@ namespace _2dfrango.api
             {
                 c.AddPolicy("default", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
+            #endregion
+
+            #region Social Logins
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+                .AddFacebook(config =>
+                {
+                    config.AppId = "234918024486588";
+                    config.AppSecret = "39ce8db252a9e7968fba7b0a302cd9fe";
+                })
+                .AddGoogle(config =>
+                {
+                    config.ClientId = "419273351615-a2kp1blvs5f3idt3mlr5vbkeqtqgjvr6.apps.googleusercontent.com";
+                    config.ClientSecret = "xkF4sgzzPO8MP9eHmLmp8Gwv";
+                });
             #endregion
 
             DependencyInjectionResolver.RegisterServices(services, Configuration);
