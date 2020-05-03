@@ -1,6 +1,7 @@
 using _2dfrango.infra.ioc.Dependency_Injection;
 using _2dfrango.infra.repository.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -47,23 +48,17 @@ namespace _2dfrango.api
             #region CORS
             services.AddCors(c =>
             {
-                c.AddPolicy("default", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                c.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
             #endregion
 
             #region Social Logins
             services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
             })
                 .AddCookie()
-                .AddOpenIdConnect("Auth0", config =>
-                {
-                    config.ClientId = "ZAYaXjVqL1db4m0VSeaUH9SjKSCzNe7h";
-                    config.ClientSecret = "ony8grQ4n3N6VA2RP5SVgS43Rsc3Nd0no--SfEDJhL6twiU2gqRRsyMCiMHK3pN_";
-                })
                 .AddFacebook(config =>
                 {
                     config.AppId = "234918024486588";
@@ -93,7 +88,7 @@ namespace _2dfrango.api
             #endregion
 
             #region CORS
-            app.UseCors("default");
+            app.UseCors();
             #endregion
 
             if (env.IsDevelopment())
