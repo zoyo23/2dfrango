@@ -1,6 +1,7 @@
 ﻿using _2dfrango.api.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 
 namespace _2dfrango.api.Controllers
@@ -35,6 +36,7 @@ namespace _2dfrango.api.Controllers
         }
 
         [HttpPost("login")]
+        [Authorize]
         public IActionResult AutenticarCliente(AutenticacaoViewModel autenticacaoViewModel)
         {
             try
@@ -47,7 +49,7 @@ namespace _2dfrango.api.Controllers
                 return UnprocessableEntity();
             }
 
-            return Ok();
+            return Ok(JsonConvert.SerializeObject(this.User));
         }
 
         [HttpGet("verificaLogin")]
@@ -64,7 +66,7 @@ namespace _2dfrango.api.Controllers
                 return UnprocessableEntity(e.Message);
             }
 
-            return Ok();
+            return Ok(JsonConvert.SerializeObject(this.User.Identity));
         }
         #endregion
 
