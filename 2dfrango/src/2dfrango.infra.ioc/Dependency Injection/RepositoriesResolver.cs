@@ -1,5 +1,7 @@
 ﻿using _2dfrango.domain.Interfaces.Repositories;
 using _2dfrango.infra.repository;
+using _2dfrango.infra.repository.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -12,10 +14,10 @@ namespace _2dfrango.infra.ioc.Dependency_Injection
     {
         public static void Resolver(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IDbConnection>(t =>
+            services.AddDbContext<_2dFrangoContext>(options =>
             {
                 var psw = Environment.GetEnvironmentVariable("DatabasePsd");
-                return new SqlConnection(configuration.GetConnectionString("DefaultConnection").Replace("[PSW_DB]", psw));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection").Replace("[PSW_DB]", psw));
             });
 
             services.AddScoped<IAutenticacaoRepository, AutenticacaoRepository>();

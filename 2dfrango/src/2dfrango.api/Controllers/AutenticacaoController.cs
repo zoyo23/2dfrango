@@ -1,11 +1,10 @@
 ﻿using _2dfrango.api.Filter;
 using _2dfrango.api.ViewModel;
-using Google.Apis.Auth;
+using _2dfrango.domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace _2dfrango.api.Controllers
@@ -58,11 +57,12 @@ namespace _2dfrango.api.Controllers
 
         [HttpGet("verificaLogin")]
         [AuthorizeGoogle]
-        public async Task<IActionResult> VerificaAutorizacao(string email)
+        public async Task<IActionResult> VerificaAutorizacao([FromServices]IAutenticacaoService autenticacaoService, string email, string nome)
         {
             try
             {
                 // TODO: Incluir o cliente no banco de dados
+                await autenticacaoService.CriarAutenticacao(email, nome);
             }
             catch (Exception e)
             {
@@ -70,7 +70,7 @@ namespace _2dfrango.api.Controllers
                 return UnprocessableEntity(e.Message);
             }
 
-            return Ok(JsonConvert.SerializeObject(this.User.Identity));
+            return Ok();
         }
         #endregion
 
