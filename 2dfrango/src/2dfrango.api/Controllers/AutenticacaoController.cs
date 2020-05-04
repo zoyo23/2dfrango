@@ -1,6 +1,12 @@
-﻿using _2dfrango.api.ViewModel;
+﻿using _2dfrango.api.Filter;
+using _2dfrango.api.ViewModel;
+using Google.Apis.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace _2dfrango.api.Controllers
 {
@@ -34,6 +40,7 @@ namespace _2dfrango.api.Controllers
         }
 
         [HttpPost("login")]
+        [Authorize]
         public IActionResult AutenticarCliente(AutenticacaoViewModel autenticacaoViewModel)
         {
             try
@@ -46,7 +53,24 @@ namespace _2dfrango.api.Controllers
                 return UnprocessableEntity();
             }
 
-            return Ok();
+            return Ok(JsonConvert.SerializeObject(this.User));
+        }
+
+        [HttpGet("verificaLogin")]
+        [AuthorizeGoogle]
+        public async Task<IActionResult> VerificaAutorizacao(string email)
+        {
+            try
+            {
+                // TODO: Incluir o cliente no banco de dados
+            }
+            catch (Exception e)
+            {
+
+                return UnprocessableEntity(e.Message);
+            }
+
+            return Ok(JsonConvert.SerializeObject(this.User.Identity));
         }
         #endregion
 

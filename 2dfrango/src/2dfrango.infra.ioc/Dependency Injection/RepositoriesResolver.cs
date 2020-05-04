@@ -10,7 +10,6 @@ namespace _2dfrango.infra.ioc.Dependency_Injection
 {
     public class RepositoriesResolver
     {
-
         public static void Resolver(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IDbConnection>(t =>
