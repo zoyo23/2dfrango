@@ -2,7 +2,7 @@
 using _2dfrango.domain.Models;
 using _2dfrango.infra.repository.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
+using System;
 using System.Threading.Tasks;
 
 namespace _2dfrango.infra.repository
@@ -12,7 +12,8 @@ namespace _2dfrango.infra.repository
         #region Atributos
 
         private readonly _2dFrangoContext _context;
-
+        private readonly DbSet<Autenticacao> _autenticacoes;
+        private readonly DbSet<Pontuacao> _pontuacoes;
         #endregion
 
         #region Construtores
@@ -20,6 +21,8 @@ namespace _2dfrango.infra.repository
         public AutenticacaoRepository(_2dFrangoContext context)
         {
             _context = context;
+            _autenticacoes = _context.Set<Autenticacao>();
+            _pontuacoes = _context.Set<Pontuacao>();
         }
 
         #endregion
@@ -28,14 +31,31 @@ namespace _2dfrango.infra.repository
 
         public async Task<Autenticacao> CadastrarClienteAsync(Autenticacao autenticacao)
         {
-            var clienteCriado = await _context.Autenticacao.AddAsync(autenticacao);
-            await _context.SaveChangesAsync();
+
+            var clienteCriado = _autenticacoes.Add(autenticacao);
+            var pontuacoes = _pontuacoes.Add(new Pontuacao
+            {
+                Email = autenticacao.Email,
+                Diamantes = 0,
+                Moedas = 10
+            });
+
+            try
+            {
+                _context.SaveChanges();
+
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
             return clienteCriado.Entity;
         }
 
         public async Task<Autenticacao> RecuperarClientePorEmail(string email)
         {
-            return await _context.Autenticacao.FirstOrDefaultAsync(p => p.Email == email);
+            return await _autenticacoes.FirstOrDefaultAsync(p => p.Email == email);
         }
 
         #endregion

@@ -24,15 +24,19 @@ namespace _2dfrango.infra.repository.Context
         {
             #region Autenticação
             modelBuilder.Entity<Autenticacao>()
-                    .Property(p => p.Email)
-                    .IsRequired();
+                .Property(p => p.Email)
+                .IsRequired();
 
             modelBuilder.Entity<Autenticacao>()
                 .Property(p => p.Telefone)
                 .IsRequired();
 
             modelBuilder.Entity<Autenticacao>()
+                .Property(p => p.Nome);
+
+            modelBuilder.Entity<Autenticacao>()
                 .HasKey(c => c.Email);
+
 
             modelBuilder.Entity<Autenticacao>()
                 .HasOne(t => t.Pontuacao)

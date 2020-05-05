@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2dfrango.infra.repository.Context;
 
 namespace _2dfrango.infra.repository.Migrations
 {
     [DbContext(typeof(_2dFrangoContext))]
-    partial class _2dFrangoContextModelSnapshot : ModelSnapshot
+    [Migration("20200505024000_AlteracaoTabelaAutenticacao")]
+    partial class AlteracaoTabelaAutenticacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
