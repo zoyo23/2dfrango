@@ -14,7 +14,7 @@ namespace _2dfrango.infra.ioc.Dependency_Injection
     {
         public static void Resolver(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IDbConnection>(t =>
+            services.AddScoped<IDbConnection>(options =>
             {
                 var psw = Environment.GetEnvironmentVariable("DatabasePsd");
                 return new SqlConnection(configuration.GetConnectionString("DefaultConnection").Replace("[PSW_DB]", psw));

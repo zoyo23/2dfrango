@@ -14,8 +14,9 @@ namespace _2dfrango.api.Filter
             settings.Audience = new List<string>() { "419273351615-a2kp1blvs5f3idt3mlr5vbkeqtqgjvr6.apps.googleusercontent.com" };
             GoogleJsonWebSignature.Payload payload = GoogleJsonWebSignature.ValidateAsync(token, settings).Result;
 
+            context.ActionArguments["nome"] = payload.Name;
             context.ActionArguments["email"] = payload.Email;
-            
+
             base.OnActionExecuting(context);
         }
     }

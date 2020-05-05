@@ -1,11 +1,6 @@
-﻿using _2dfrango.api.Filter;
-using _2dfrango.api.ViewModel;
-using Google.Apis.Auth;
-using Microsoft.AspNetCore.Authorization;
+﻿using _2dfrango.domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace _2dfrango.api.Controllers
@@ -23,46 +18,13 @@ namespace _2dfrango.api.Controllers
         #endregion
 
         #region Métodos Públicos
-        [HttpPost("cadastrar")]
-        public IActionResult CadastrarCliente(CadastroViewModel cadastroViewModel)
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                return UnprocessableEntity();
-            }
-
-            return Ok();
-        }
-
-        [HttpPost("login")]
-        [Authorize]
-        public IActionResult AutenticarCliente(AutenticacaoViewModel autenticacaoViewModel)
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                return UnprocessableEntity();
-            }
-
-            return Ok(JsonConvert.SerializeObject(this.User));
-        }
-
-        [HttpGet("verificaLogin")]
-        [AuthorizeGoogle]
-        public async Task<IActionResult> VerificaAutorizacao(string email)
+        [HttpPost("verificaLogin")]
+        public async Task<IActionResult> VerificaAutorizacao([FromServices]IAutenticacaoService autenticacaoService, string email, string nome)
         {
             try
             {
                 // TODO: Incluir o cliente no banco de dados
+                await autenticacaoService.CriarAutenticacao(email, nome);
             }
             catch (Exception e)
             {
@@ -70,7 +32,7 @@ namespace _2dfrango.api.Controllers
                 return UnprocessableEntity(e.Message);
             }
 
-            return Ok(JsonConvert.SerializeObject(this.User.Identity));
+            return Ok();
         }
         #endregion
 
