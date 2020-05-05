@@ -9,6 +9,7 @@ namespace _2dfrango.infra.ioc.Dependency_Injection
         public static void Resolver(IServiceCollection services)
         {
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
+            services.AddScoped<IPontuacaoService, PontuacaoService>();
         }
     }
 }
