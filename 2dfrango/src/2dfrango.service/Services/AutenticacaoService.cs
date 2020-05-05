@@ -32,7 +32,7 @@ namespace _2dfrango.service.Services
                 await _autenticacaoRepository.CadastrarClienteAsync(new domain.Models.Autenticacao
                 {
                     Email = email,
-                    Telefone = nome
+                    Nome = nome
                 });
             }
         }
