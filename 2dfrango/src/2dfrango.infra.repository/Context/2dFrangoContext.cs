@@ -28,8 +28,7 @@ namespace _2dfrango.infra.repository.Context
                 .IsRequired();
 
             modelBuilder.Entity<Autenticacao>()
-                .Property(p => p.Telefone)
-                .IsRequired();
+                .Property(p => p.Telefone);
 
             modelBuilder.Entity<Autenticacao>()
                 .Property(p => p.Nome);
